@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ltt-uitableview
+//  ltt-uitableview-custom
 //
 //  Created by 林東東 on 2021/7/15.
 //
@@ -8,17 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     var sectionItem = ["Team 1","Team 2"]
     
-    var dataSource = [
-        ["Levy","Kent","Ting","Tony"],
-        ["Ricky","Xuan","Yu"]
-    ]
+    var dataSource: [[UserData]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.dataSource = UserData.fatchData()
+        
         setupTableView()
     }
     
@@ -32,28 +31,13 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // 註冊 section
+        tableView.register(UINib(nibName: "CustomTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CustomTableViewHeader")
         // 註冊 cell
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
         
         // 加入到畫面中
         self.view.addSubview(tableView)
-        
-        // 屬性
-        // 分隔線的樣式
-        tableView.separatorStyle = .singleLine
-        
-        // 分隔線的間距 四個數值分別代表 上、左、下、右 的間距
-        tableView.separatorInset =
-            UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
-        
-        // 是否可以點選 cell
-        tableView.allowsSelection = true
-        
-        // 是否可以多選 cell
-        tableView.allowsMultipleSelection = false
-        
-        // 滾動條
-        tableView.showsVerticalScrollIndicator = false
 
     }
     
@@ -65,10 +49,20 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionItem.count
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let title = sectionItem[section]
-        return title
+    //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //        let title = sectionItem[section]
+    //        return title
+    //    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomTableViewHeader") as? CustomTableViewHeader else { return UITableViewHeaderFooterView() }
+        headerView.lblTitle.text = sectionItem[section]
+        return headerView
     }
     
     // cell
@@ -81,12 +75,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? CustomTableViewCell else {
+            return UITableViewCell()
+        }
         
         let data = dataSource[indexPath.section][indexPath.row]
-        if let label = cell.textLabel {
-            label.text = data
-        }
+        cell.lblTitle.text = data.name
+        cell.lblTag.text = data.devloper
         
         return cell
     }
@@ -96,4 +92,3 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
-

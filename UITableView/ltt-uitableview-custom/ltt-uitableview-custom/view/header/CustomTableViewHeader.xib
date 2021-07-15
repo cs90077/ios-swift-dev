@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="EdQ-5N-XoV" customClass="CustomTableViewHeader" customModule="ltt_uitableview_custom" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNq-To-4nR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meU-AN-nJX">
+                            <rect key="frame" x="8" y="31.000000000000004" width="167.33333333333334" height="38.333333333333343"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="meU-AN-nJX" firstAttribute="leading" secondItem="yNq-To-4nR" secondAttribute="leading" constant="8" id="ATS-EB-v8U"/>
+                        <constraint firstItem="meU-AN-nJX" firstAttribute="centerY" secondItem="yNq-To-4nR" secondAttribute="centerY" id="PXP-tZ-ak7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Snd-pF-poL"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Snd-pF-poL" firstAttribute="trailing" secondItem="yNq-To-4nR" secondAttribute="trailing" id="6k4-Xr-7a7"/>
+                <constraint firstItem="yNq-To-4nR" firstAttribute="top" secondItem="EdQ-5N-XoV" secondAttribute="top" id="83A-3J-hSp"/>
+                <constraint firstAttribute="bottom" secondItem="yNq-To-4nR" secondAttribute="bottom" id="OXt-34-iGr"/>
+                <constraint firstItem="yNq-To-4nR" firstAttribute="leading" secondItem="Snd-pF-poL" secondAttribute="leading" id="lPe-8M-3GA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="lblTitle" destination="meU-AN-nJX" id="Jza-Dk-s9g"/>
+            </connections>
+            <point key="canvasLocation" x="-177.536231884058" y="-425.22321428571428"/>
+        </view>
+    </objects>
+</document>
